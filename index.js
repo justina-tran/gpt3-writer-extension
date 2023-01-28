@@ -24,7 +24,7 @@ const saveKey = () => {
 
         // Save to google storage
         chrome.storage.local.set({'openai-ley': encodedValue}, () => {
-            document.getElementById('key_needed').style.dispaly = 'none';
+            document.getElementById('key_needed').style.display = 'none';
             document.getElementById('key_entered').style.display = 'block';
         });
     }

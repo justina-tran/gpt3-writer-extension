@@ -1,7 +1,32 @@
 body {
     min-width: 250px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 #key_entered {
     display: none;
+}
+
+#save_key_button {
+  background-color: #eee2df;
+  border: 2px solid #89b0ae;
+  border-radius: 30px;
+  box-shadow: #89b0ae 2px 2px 0 0;
+  color: #6b9080; 
+}
+
+#save_key_button:hover {
+  background-color: #fff;
+}
+
+#change_key_button {
+    background-color: #eee2df;
+    border: 2px solid #89b0ae;
+    border-radius: 30px;
+    box-shadow: #89b0ae 2px 2px 0 0;
+    color: #6b9080;
+}
+  
+#change_key_button:hover {
+    background-color: #fff;
 }
