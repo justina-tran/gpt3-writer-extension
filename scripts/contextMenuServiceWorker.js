@@ -10,6 +10,23 @@ const getKey = () => {
     });
   };
 
+ // inject content in active tab
+  const sendMessage = (content) => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      const activeTab = tabs[0].id;
+  
+      chrome.tabs.sendMessage(
+        activeTab,
+        { message: 'inject', content },
+        (response) => {
+          if (response.status === 'failed') {
+            console.log('injection failed.');
+          }
+        }
+      );
+    });
+  }; 
+
 const generate = async (prompt) => {
   // Get your API key from storage
   const key = await getKey();
@@ -37,14 +54,19 @@ const generate = async (prompt) => {
     
 const generateCompletionAction = async (info) => {
     try {
+        // Send mesage with generating text (this will be like a loading indicator)
+        sendMessage('generating...');
+
         const { selectionText } = info;
         const basePromptPrefix = `
-        Write me a summary of my experiences using the context below
+        Write me a few resume bullet points showing my skills and impact using the context below
         Context:
         `;
         // call GPT-3
         const baseCompletion = await generate(`${basePromptPrefix}${selectionText}`);
-        console.log(baseCompletion.text)
+
+        // send output
+        sendMessage(baseCompletion.text);
     } catch (error) {
         console.log(error);
     }

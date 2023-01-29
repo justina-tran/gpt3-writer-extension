@@ -10,7 +10,7 @@ const checkForKey = () => {
 // encode user input using binary to ascii function
 const encode = (input) => {
     return btoa(input);
-  };
+};
 
 // save key from user input
 const saveKey = () => {
@@ -23,7 +23,7 @@ const saveKey = () => {
         const encodedValue = encode(value);
 
         // Save to google storage
-        chrome.storage.local.set({'openai-ley': encodedValue}, () => {
+        chrome.storage.local.set({'openai-key': encodedValue}, () => {
             document.getElementById('key_needed').style.display = 'none';
             document.getElementById('key_entered').style.display = 'block';
         });
